@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -7,9 +8,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasicosComponent implements OnInit {
 
-  constructor() { }
+// miFormulario: FormGroup = new FormGroup({
+//   nombre: new FormControl('AMD RX6600'),
+//   precio: new FormControl(2400000),
+//   existencias: new FormControl(11)
+// })
 
-  ngOnInit(): void {
+
+miFormulario: FormGroup = this.fb.group({
+  nombre: [ , [Validators.required, Validators.minLength(3)] ],
+  precio: [ , [Validators.required, Validators.min(0)] ],
+  existencias: [ ,  [Validators.required, Validators.min(0)] ]
+})
+
+  constructor(private fb:FormBuilder) { }
+  
+  ngOnInit() {
+      this.miFormulario.setValue({
+        nombre: 'AMD RX6900 XT',
+        precio: 800000,
+        existencias: 6
+      })
   }
+
+
+campoEsValido(campo: string) {
+  return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched
+}
+
+guardar() {
+  if(this.miFormulario.invalid){
+    this.miFormulario.markAllAsTouched();
+    return;
+  }
+  console.log(this.miFormulario.value);
+  this.miFormulario.reset();
+}
 
 }
