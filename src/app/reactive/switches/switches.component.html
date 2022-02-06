@@ -1,7 +1,7 @@
 <h2>Reactivos: <span>Switches</span></h2>
 <hr>
 
-<form>
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
 
 
     <!--? Radio  -->
@@ -13,8 +13,7 @@
                 <input  class="form-check-input" 
                         type="radio"
                         value="M"
-                        
-                        name="radioGenero" 
+                        formControlName="genero"
                         id="radioMasculino"
                         >
                 <label  class="form-check-label" 
@@ -26,8 +25,7 @@
                 <input  class="form-check-input" 
                         type="radio" 
                         value="F"
-                        
-                        name="radioGenero" 
+                        formControlName="genero"
                         id="radioFemenino"
                        >
                 <label  class="form-check-label" 
@@ -46,8 +44,7 @@
             <div class="form-check form-switch mt-2">
                 <input  class="form-check-input" 
                         type="checkbox" role="switch"
-                        
-                      
+                        formControlName="notificaciones"
                         id="flexSwitchCheckChecked">
                 <label  class="form-check-label" 
                         for="flexSwitchCheckChecked">Quiero recibir Notificaciones</label>
@@ -63,9 +60,7 @@
             <div class="form-check">
                 <input  class="form-check-input" 
                         type="checkbox"
-                       
-                        
-                        
+                        formControlName="condiciones"
                         id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                     Terminos y condiciones
@@ -77,7 +72,8 @@
     <div class="row">
         <div class="col">
             <button class="btn btn-primary float-end"
-                    >
+                    type="submit"
+                   (click)="guardar()">
                 Guardar
             </button>
         </div>
@@ -85,7 +81,7 @@
 
 </form>
 
-<!-- 
+
 <h5>Valor del formulario</h5>
 <pre>
     {{miFormulario.value | json}}
@@ -99,7 +95,8 @@
 <h5>Valid</h5>
 <pre>{{miFormulario.valid}}</pre>
 <br>
-<h5>Terminos</h5>
+
+<!-- <h5>Terminos</h5>
 <pre>{{miFormulario.controls['terminos']?.errors | json}}</pre>
 <br>
 <pre>Condiciones: </pre> -->

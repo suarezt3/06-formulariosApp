@@ -22,19 +22,19 @@
     <!--? Agregar Favorito -->
     <div class="mb-3 row">
         <label class="col-sm col-form-label">Agregar</label>
+
         <div class="col-sm-9">
-
             <div class="input-group">
-
                 <input type="text"
+                        [formControl]="nuevoFavorito"
                        class="form-control"
                         placeholder="Agregar juego favorito"
-                        
+                        (keyup.enter)="agregarFavorito()"
                         >
 
             <button class="btn btn-outline-primary"
                     type="button"
-                    >
+                    (click)="agregarFavorito()">
                 Agregar
             </button>
             </div>
@@ -55,7 +55,8 @@
 
              <button   class="btn btn-outline-danger"
                        type="button"
-                       >
+                       
+                       (click)="eliminar(i)">
                         Eliminar
             </button>
             </div>
